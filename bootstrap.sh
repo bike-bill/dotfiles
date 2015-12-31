@@ -3,7 +3,7 @@
 dir=~/.dotfiles                    # dotfiles directory
 olddir=~/.dotfiles_old             # old dotfiles backup directory
 files=".bash_aliases .bash_profile .bashrc .dir_colors .vimrc .vim \
-       .git .git_svn_bash_prompt .gitconfig .gitignore_global \
+       .git_svn_bash_prompt .gitconfig .gitignore_global \
        .mongorc.js .vim .vimrc"        
 
 ##########
