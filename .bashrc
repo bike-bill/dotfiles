@@ -36,22 +36,6 @@ elif [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 
-# Parse git for clean dir
-#function parse_git_dirty {
-#[[ "$(git status 2> /dev/null | tail -n1)" != "nothing to commit (working directory clean)" ]] && echo "*"
-#}
- 
-# To display git branch
-#function parse_git_branch {
-#git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
-#}
- 
-#PS1='\[\033[01;31m\]\u@\h \[\033[01;34m\]\w\[\033[01;35m\]$(parse_git_branch)\[\033[01;34m\] \$ \[\033[00m\]'
-
-# Change the window title of X terminals
-#PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
-# End of Git branch config
-
 . ~/.git_svn_bash_prompt
 
 if [[ -z $DISPLAY ]]; then
@@ -88,8 +72,6 @@ fi
 export EDITOR=vim
 export TERM=xterm-256color
 export PATH=.:$HOME/bin:$PATH
-export HOMEBREW_GITHUB_API_TOKEN=8156988b2c5d3443e6a9c9bb9c4d8eef2ad5f3af
-
 if [ -f "$HOME/.dir_colors" ] ; then
     eval $(dircolors -b $HOME/.dir_colors)
 fi
