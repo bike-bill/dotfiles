@@ -61,15 +61,16 @@ if is_osx; then
     export MANPATH=$GNUMAN_HOME:$MANPATH
     export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
     export PATH="$GNUBIN_HOME:~/bin:$ANDROID_HOME/tools:$PATH"
+    source ~/.homebrew-github-api-token
 else
     ANDROID_HOME=~/android-sdk-linux
     #export JAVA_HOME=/usr/lib/jvm/default-java
-    export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+    export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on \
+	    -Dswing.aatext=true \
+	    -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
     export JAVA_FONTS=/usr/share/fonts/TTF
     PATH=$HOME/Tools/android-sdk-linux/platform-tools:$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
 fi
-
-source ~/.homebrew-github-api-token
 
 export EDITOR=vim
 export TERM=xterm-256color
