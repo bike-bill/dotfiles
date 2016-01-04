@@ -9,11 +9,8 @@ files="bash_aliases bash_profile bashrc dir_colors vimrc vim \
 ##########
 
 # create dotfiles_old in homedir
-echo "Removing the previous $olddir"
 rm -rf $olddir
-echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir
-echo "...done"
 
 # change to the dotfiles directory
 cd $dir
