@@ -3,10 +3,12 @@
 ## Install
 Clone to your machine:
 
-`git clone git://github.com/bike-bill/dotfiles.git
-
+```bash
+git clone git://github.com/bike-bill/dotfiles.git
+```
 ## Install the dotfiles:
 
-```cd .dotfiles
+```bash
+cd .dotfiles
 bootstrap.sh
 ```
