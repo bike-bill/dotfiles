@@ -55,11 +55,12 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 if is_osx; then
-    ANDROID_HOME=/Users/wsandner/android-sdk-mac_x86
+    #export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+    #ANDROID_HOME=/Users/wsandner/android-sdk-mac_x86
     GNUBIN_HOME=/usr/local/opt/coreutils/libexec/gnubin
     GNUMAN_HOME=/usr/local/opt/coreutils/libexec/gnuman
     export MANPATH=$GNUMAN_HOME:$MANPATH
-    #export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+    export PATH="~/bin:$ANDROID_HOME/tools:$PATH"
     export PATH="$GNUBIN_HOME:~/bin:$ANDROID_HOME/tools:$PATH"
     source ~/.homebrew-github-api-token
 else
