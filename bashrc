@@ -65,9 +65,7 @@ if is_osx; then
 else
     ANDROID_HOME=~/android-sdk-linux
     #export JAVA_HOME=/usr/lib/jvm/default-java
-    export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on \
-	    -Dswing.aatext=true \
-	    -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+    export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
     export JAVA_FONTS=/usr/share/fonts/TTF
     PATH=$HOME/Tools/android-sdk-linux/platform-tools:$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
 fi
