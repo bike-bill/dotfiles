@@ -30,8 +30,8 @@ shopt -s checkwinsize
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+if [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && ! shopt -oq posix; then
+    . /usr/share/bash-completion/bash_completion
 elif [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
@@ -66,9 +66,7 @@ if is_osx; then
 else
     ANDROID_HOME=~/android-sdk-linux
     #export JAVA_HOME=/usr/lib/jvm/default-java
-    export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on \
-	    -Dswing.aatext=true \
-	    -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+    export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
     export JAVA_FONTS=/usr/share/fonts/TTF
     PATH=$HOME/Tools/android-sdk-linux/platform-tools:$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
 fi

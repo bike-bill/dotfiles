@@ -4,7 +4,7 @@
 Clone to your machine:
 
 ```bash
-git clone git://github.com/bike-bill/dotfiles.git
+git clone git://github.com/bike-bill/dotfiles.git ~/.dotfiles
 ```
 ## Install the dotfiles:
 
