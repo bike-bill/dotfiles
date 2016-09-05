@@ -1,4 +1,3 @@
-
 #!/bin/bash
 #
 # DESCRIPTION:
@@ -114,11 +113,23 @@ function set_prompt_symbol () {
   fi
 }
 
+# Determine active Python virtualenv details.
+function set_virtualenv () {
+  if test -z "$VIRTUAL_ENV" ; then
+      PYTHON_VIRTUALENV=""
+  else
+      PYTHON_VIRTUALENV="${BLUE}[`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE} "
+  fi
+}
+
 # Set the full bash prompt.
 function set_bash_prompt () {
   # Set the PROMPT_SYMBOL variable. We do this first so we don't lose the 
   # return value of the last command.
   set_prompt_symbol $?
+
+  # Set the PYTHON_VIRTUALENV variable.
+  set_virtualenv
 
   # Set the BRANCH variable.
   if is_git_repository ; then
@@ -130,7 +141,7 @@ function set_bash_prompt () {
   fi
 
   # Set the bash prompt variable.
-  PS1="${RED}\u${YELLOW}@${CYAN}\h${YELLOW}:\w${PROMPT_COLOR} ${BRANCH}\n$ ${COLOR_NONE}"
+  PS1="${PYTHON_VIRTUALENV}${RED}\u${YELLOW}@${CYAN}\h${YELLOW}:\w${PROMPT_COLOR} ${BRANCH}\n$ ${COLOR_NONE}"
 
   # If this is an xterm set the title to user@host:dir
   case "$TERM" in
