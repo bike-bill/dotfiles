@@ -70,13 +70,16 @@ else
     #export JAVA_FONTS=/usr/share/fonts/TTF
     PATH=$HOME/Tools/android-sdk-linux/platform-tools:$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
 fi
-export JENV_HOME=$HOME/.jenv
+#export JENV_HOME=$HOME/.jenv #its bin  was added to the path
 export EDITOR=vim
 export TERM=xterm-256color
-export PATH=.:$HOME/bin:$JENV_HOME/bin:$PATH
+export PATH=.:$HOME/bin:$PATH
 if [ -f "$HOME/.dir_colors" ] ; then
     eval $(dircolors -b $HOME/.dir_colors)
 fi
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-#if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
+if which jenv  > /dev/null 2>&1; then eval "$(jenv init -)"; fi
+
+source /usr/local/bin/virtualenvwrapper.sh
+

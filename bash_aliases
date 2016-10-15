@@ -2,7 +2,6 @@ if is_osx; then
 	alias sqlplus="DYLD_LIBRARY_PATH=/usr/local/Oracle/product/instantclient/11.2.0.4.0/lib sqlplus"
 	alias gqlplus="DYLD_LIBRARY_PATH=/usr/local/Oracle/product/instantclient/11.2.0.4.0/lib gqlplus"
 	alias htop='sudo htop'
-	alias python='python3'
 else
 	#Pacman alias examples
 	alias pacupg='sudo pacman -Syu'		# Synchronize with repositories and then upgrade packages that are out of date on the local system.
