@@ -63,6 +63,7 @@ if is_osx; then
     export PATH="~/bin:$ANDROID_HOME/tools:$PATH"
     export PATH="$GNUBIN_HOME:~/bin:$ANDROID_HOME/tools:$PATH"
     source ~/.homebrew-github-api-token
+    source /usr/local/bin/virtualenvwrapper.sh
 else
     ANDROID_HOME=~/android-sdk-linux
     #export JAVA_HOME=/usr/lib/jvm/default-java
@@ -80,6 +81,4 @@ fi
 
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 if which jenv  > /dev/null 2>&1; then eval "$(jenv init -)"; fi
-
-source /usr/local/bin/virtualenvwrapper.sh
 
