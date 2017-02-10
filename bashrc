@@ -64,11 +64,12 @@ if is_osx; then
     export PATH="$GNUBIN_HOME:~/bin:$ANDROID_HOME/tools:$PATH"
     source ~/.homebrew-github-api-token
 else
-    ANDROID_HOME=~/android-sdk-linux
+    #ANDROID_HOME=~/android-sdk-linux
     #export JAVA_HOME=/usr/lib/jvm/default-java
-    #export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+    export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
     #export JAVA_FONTS=/usr/share/fonts/TTF
     PATH=$HOME/Tools/android-sdk-linux/platform-tools:$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
+    source /usr/bin/virtualenvwrapper.sh
 fi
 export VIRTUALENV_PYTHON=/usr/local/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
@@ -76,11 +77,12 @@ source /usr/local/bin/virtualenvwrapper.sh
 #export JENV_HOME=$HOME/.jenv #its bin  was added to the path
 export EDITOR=vim
 export TERM=xterm-256color
-export PATH=.:$HOME/bin:$PATH
+export PATH=.:$HOME/bin:$JENV_HOME/bin:$PATH
 if [ -f "$HOME/.dir_colors" ] ; then
     eval $(dircolors -b $HOME/.dir_colors)
 fi
 
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
-if which jenv  > /dev/null 2>&1; then eval "$(jenv init -)"; fi
+if which jenv > /dev/null 2>&1; then eval "$(jenv init -)"; fi
+if [ -f /usr/share/nvm/init-nvm.sh ]; then source /usr/share/nvm/init-nvm.sh; fi
 
