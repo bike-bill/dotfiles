@@ -63,7 +63,6 @@ if is_osx; then
     export PATH="~/bin:$ANDROID_HOME/tools:$PATH"
     export PATH="$GNUBIN_HOME:~/bin:$ANDROID_HOME/tools:$PATH"
     source ~/.homebrew-github-api-token
-    source /usr/local/bin/virtualenvwrapper.sh
 else
     #ANDROID_HOME=~/android-sdk-linux
     #export JAVA_HOME=/usr/lib/jvm/default-java
@@ -72,7 +71,10 @@ else
     PATH=$HOME/Tools/android-sdk-linux/platform-tools:$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
     source /usr/bin/virtualenvwrapper.sh
 fi
-export JENV_HOME=$HOME/.jenv
+export VIRTUALENV_PYTHON=/usr/local/bin/python3
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+#export JENV_HOME=$HOME/.jenv #its bin  was added to the path
 export EDITOR=vim
 export TERM=xterm-256color
 export PATH=.:$HOME/bin:$JENV_HOME/bin:$PATH
