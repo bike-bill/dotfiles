@@ -62,6 +62,8 @@ if is_osx; then
     export MANPATH=$GNUMAN_HOME:$MANPATH
     export PATH="~/bin:$ANDROID_HOME/tools:$PATH"
     export PATH="$GNUBIN_HOME:~/bin:$ANDROID_HOME/tools:$PATH"
+    export VIRTUALENV_PYTHON=/usr/local/bin/python3
+    source /usr/local/bin/virtualenvwrapper.sh
     source ~/.homebrew-github-api-token
 else
     #ANDROID_HOME=~/android-sdk-linux
@@ -69,11 +71,10 @@ else
     #export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
     #export JAVA_FONTS=/usr/share/fonts/TTF
     PATH=$HOME/Tools/android-sdk-linux/platform-tools:$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
+    export VIRTUALENV_PYTHON=/usr/bin/python3
     source /usr/bin/virtualenvwrapper.sh
 fi
-export VIRTUALENV_PYTHON=/usr/local/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
 #export JENV_HOME=$HOME/.jenv #its bin  was added to the path
 export EDITOR=vim
 export TERM=xterm-256color
