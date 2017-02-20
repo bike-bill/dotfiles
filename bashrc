@@ -56,21 +56,21 @@ fi
 
 if is_osx; then
     #export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-    #ANDROID_HOME=/Users/wsandner/android-sdk-mac_x86
+    export ANDROID_HOME=/usr/local/opt/android-sdk
     GNUBIN_HOME=/usr/local/opt/coreutils/libexec/gnubin
     GNUMAN_HOME=/usr/local/opt/coreutils/libexec/gnuman
     export MANPATH=$GNUMAN_HOME:$MANPATH
-    export PATH="~/bin:$ANDROID_HOME/tools:$PATH"
-    export PATH="$GNUBIN_HOME:~/bin:$ANDROID_HOME/tools:$PATH"
+    #export PATH="$ANDROID_HOME/tools:$PATH"
+    export PATH="$GNUBIN_HOME:$PATH"
     export VIRTUALENV_PYTHON=/usr/local/bin/python3
     source /usr/local/bin/virtualenvwrapper.sh
     source ~/.homebrew-github-api-token
 else
-    #ANDROID_HOME=~/android-sdk-linux
+    #ANDROID_HOME=~/android-idk-linux
     #export JAVA_HOME=/usr/lib/jvm/default-java
     #export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
     #export JAVA_FONTS=/usr/share/fonts/TTF
-    PATH=$HOME/Tools/android-sdk-linux/platform-tools:$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
+    #PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
     export VIRTUALENV_PYTHON=/usr/bin/python3
     source /usr/bin/virtualenvwrapper.sh
 fi
@@ -78,12 +78,12 @@ export WORKON_HOME=$HOME/.virtualenvs
 #export JENV_HOME=$HOME/.jenv #its bin  was added to the path
 export EDITOR=vim
 export TERM=xterm-256color
-export PATH=.:$HOME/bin:$JENV_HOME/bin:$PATH
+#export PATH=.:$HOME/bin:$PATH
 if [ -f "$HOME/.dir_colors" ] ; then
     eval $(dircolors -b $HOME/.dir_colors)
 fi
 
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
-if which jenv > /dev/null 2>&1; then eval "$(jenv init -)"; fi
+#if which jenv > /dev/null 2>&1; then eval "$(jenv init -)"; fi
 if [ -f /usr/share/nvm/init-nvm.sh ]; then source /usr/share/nvm/init-nvm.sh; fi
 
