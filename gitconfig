@@ -1,0 +1,20 @@
+[user]
+	email = wsandner@gmail.com
+	name = William Sandner
+[core]
+	excludefile = /home/william/.gitignore_global
+[diff]
+	meld
+[difftool]
+	prompt = false
+[difftool "meld"]
+	trustExitCode = true
+	cmd = open -W -a Meld --args \"$LOCAL\" \"$PWD/$REMOTE\"
+[merge]
+	tool = meld
+	conflict-style = diff3
+[mergetool]
+	trustExitCode = true
+	#cmd = meld $LOCAL $BASE $REMOTE -o $MERGED --auto-merge
+	cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
+
