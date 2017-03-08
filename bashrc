@@ -27,6 +27,14 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+# Setup ssh-agent
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > ~/.ssh-agent-thing
+fi
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+    eval "$(<~/.ssh-agent-thing)"
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -75,7 +83,10 @@ else
     source /usr/bin/virtualenvwrapper.sh
 fi
 export WORKON_HOME=$HOME/.virtualenvs
-#export JENV_HOME=$HOME/.jenv #its bin  was added to the path
+RBENV_HOME=$HOME/.rbenv
+#JENV_HOME=$HOME/.jenv #its bin  was added to the path
+export PATH=$RBENV_HOME/bin:$PATH
+#export PATH=$JENV_HOME/bin:$PATH
 export EDITOR=vim
 export TERM=xterm-256color
 #export PATH=.:$HOME/bin:$PATH

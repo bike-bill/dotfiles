@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Users/william/ws/here/git/trafd/b2butil'
-let g:netrw_dirhist_2='/Users/william/.dotfiles/.git'
-let g:netrw_dirhist_3='/usr/local/Cellar/python3/3.6.0/lib'
