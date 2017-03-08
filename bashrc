@@ -63,19 +63,16 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 if is_osx; then
-    #export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
     export ANDROID_HOME=/usr/local/opt/android-sdk
     GNUBIN_HOME=/usr/local/opt/coreutils/libexec/gnubin
+    export PATH="$GNUBIN_HOME:$PATH"
     GNUMAN_HOME=/usr/local/opt/coreutils/libexec/gnuman
     export MANPATH=$GNUMAN_HOME:$MANPATH
-    #export PATH="$ANDROID_HOME/tools:$PATH"
-    export PATH="$GNUBIN_HOME:$PATH"
     export VIRTUALENV_PYTHON=/usr/local/bin/python3
     source /usr/local/bin/virtualenvwrapper.sh
     source ~/.homebrew-github-api-token
 else
-    #ANDROID_HOME=~/android-idk-linux
-    #export JAVA_HOME=/usr/lib/jvm/default-java
+    #export ANDROID_HOME=~/android-sdk-linux
     #export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
     #export JAVA_FONTS=/usr/share/fonts/TTF
     #PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
@@ -83,18 +80,14 @@ else
     source /usr/bin/virtualenvwrapper.sh
 fi
 export WORKON_HOME=$HOME/.virtualenvs
-RBENV_HOME=$HOME/.rbenv
-#JENV_HOME=$HOME/.jenv #its bin  was added to the path
-export PATH=$RBENV_HOME/bin:$PATH
-#export PATH=$JENV_HOME/bin:$PATH
 export EDITOR=vim
 export TERM=xterm-256color
-#export PATH=.:$HOME/bin:$PATH
+export PATH=.:$HOME/bin:$PATH
 if [ -f "$HOME/.dir_colors" ] ; then
     eval $(dircolors -b $HOME/.dir_colors)
 fi
 
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
-#if which jenv > /dev/null 2>&1; then eval "$(jenv init -)"; fi
+if which jenv > /dev/null 2>&1; then eval "$(jenv init -)"; fi
 if [ -f /usr/share/nvm/init-nvm.sh ]; then source /usr/share/nvm/init-nvm.sh; fi
 
