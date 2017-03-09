@@ -27,14 +27,6 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Setup ssh-agent
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent > ~/.ssh-agent-thing
-fi
-if [[ "$SSH_AGENT_PID" == "" ]]; then
-    eval "$(<~/.ssh-agent-thing)"
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -72,10 +64,10 @@ if is_osx; then
     source /usr/local/bin/virtualenvwrapper.sh
     source ~/.homebrew-github-api-token
 else
+    export PATH=$HOME/.jenv/bin:$PATH
     #export ANDROID_HOME=~/android-sdk-linux
     #export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
     #export JAVA_FONTS=/usr/share/fonts/TTF
-    #PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
     export VIRTUALENV_PYTHON=/usr/bin/python3
     source /usr/bin/virtualenvwrapper.sh
 fi
