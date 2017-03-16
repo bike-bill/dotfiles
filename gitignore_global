@@ -2,6 +2,7 @@
 ### Global ###
 ##############
 
+
 # Archives #
 ############
 # It's better to unpack these files and commit the raw source because
@@ -26,6 +27,7 @@
 *.egg
 *.deb
 *.rpm
+
 
 # Eclipse #
 ###########
@@ -80,9 +82,11 @@ local.properties
 # Code Recommenders
 .recommenders/
 
+
 # GPG #
 #######
 secring.*
+
 
 # JetBrains #
 #############
@@ -132,16 +136,29 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+
 # Libre Office #
 ################
 # LibreOffice locks
 .~lock.*#
 
+
 # Linux #
 #########
-.*
-!.gitignore
 *~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
 
 # Maven #
 #########
@@ -155,34 +172,26 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
-# OS X #
-########
-*.DS_Store
-.AppleDouble
-.LSOverride
 
-# Icon must end with two \r
-Icon
+# Microsoft Office #
+####################
+*.tmp
 
+# Word temporary
+~$*.doc*
 
-# Thumbnails
-._*
+# Excel temporary
+~$*.xls*
 
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
+# Excel Backup File
+*.xlk
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+# PowerPoint temporary
+~$*.ppt*
+
+# Visio autosave temporary files
+*.~vsdx
+
 
 # SBT #
 #######
@@ -195,6 +204,7 @@ src_managed/
 project/boot/
 .history
 .cache
+
 
 # Sublime Text #
 ################
@@ -226,20 +236,27 @@ bh_unicode_properties.cache
 # https://packagecontrol.io/packages/sublime-github
 GitHub.sublime-settings
 
+
 # SVN #
 #######
 .svn/
 
-# Tags #
-########
-TAGS
-tags
 
 # Textmate #
 ############
 *.tmproj
 *.tmproject
 tmtags
+
+
+# Visual Studio Code #
+######################
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
 
 # Windows #
 ###########
@@ -249,6 +266,7 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
+
 
 # Vim #
 #######
@@ -262,6 +280,7 @@ Session.vim
 *~
 # auto-generated tag files
 tags
+
 
 # XCODE #
 #########
@@ -288,3 +307,33 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+
+
+# mac OS #
+##########
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk

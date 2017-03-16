@@ -2,7 +2,7 @@
 	email = wsandner@gmail.com
 	name = William Sandner
 [core]
-	excludefile = /home/william/.gitignore_global
+	excludesfile = /home/william/.gitignore_global
 [diff]
 	meld
 [difftool]
