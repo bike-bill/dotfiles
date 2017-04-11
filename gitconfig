@@ -10,7 +10,7 @@
 [difftool "meld"]
 	trustExitCode = true
 	cmd = meld "$LOCAL" "$REMOTE"
-	### OSX
+	### OSX ###
 	#cmd = open -W -a Meld --args \"$LOCAL\" \"$PWD/$REMOTE\"
 [merge]
 	tool = meld
@@ -21,6 +21,8 @@
 	trustExitCode = true
 	cmd = meld --automerge $LOCAL $BASE $REMOTE --output $MERGED
 	#cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
-    ### OSX
+        ### OSX ###
 	#cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
 	### See: http://stackoverflow.com/questions/34119866/setting-up-and-using-meld-as-your-git-difftool-and-mergetool
+[color]
+	ui = auto
