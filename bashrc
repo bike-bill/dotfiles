@@ -30,7 +30,7 @@ shopt -s checkwinsize
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && ! shopt -oq posix; then
+if [ -f /usr/share/bash-completion/bash_completion ] && ! shopt -oq posix; then
     . /usr/share/bash-completion/bash_completion
 elif [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
@@ -65,11 +65,14 @@ if is_osx; then
     source ~/.homebrew-github-api-token
 else
     export PATH=$HOME/.jenv/bin:$PATH
-    #export ANDROID_HOME=~/android-sdk-linux
+    export ANDROID_HOME=/opt/android-sdk
     #export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
     #export JAVA_FONTS=/usr/share/fonts/TTF
     export VIRTUALENV_PYTHON=/usr/bin/python3
     source /usr/bin/virtualenvwrapper.sh
+    if [ -f /usr/share/django-bash-completion/django-bash-completion.sh ]; then
+        . /usr/share/django-bash-completion/django-bash-completion.sh;
+    fi	
 fi
 export WORKON_HOME=$HOME/.virtualenvs
 export EDITOR=vim

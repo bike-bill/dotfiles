@@ -28,6 +28,7 @@ else
 	alias pacmir='sudo pacman -Syy'                    # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
 fi
 
+alias t='todo.sh -d ~/.todo.cfg'
 alias vi=vim
 
 alias diff='colordiff'          # requires colordiff package
