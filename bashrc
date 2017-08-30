@@ -61,6 +61,7 @@ if is_osx; then
     GNUMAN_HOME=/usr/local/opt/coreutils/libexec/gnuman
     export MANPATH=$GNUMAN_HOME:$MANPATH
     export VIRTUALENV_PYTHON=/usr/local/bin/python3
+    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
     source /usr/local/bin/virtualenvwrapper.sh
     source ~/.homebrew-github-api-token
 else
