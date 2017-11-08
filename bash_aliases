@@ -1,8 +1,15 @@
 if is_osx; then
-	alias sqlplus="DYLD_LIBRARY_PATH=/usr/local/Oracle/product/instantclient/11.2.0.4.0/lib sqlplus"
-	alias gqlplus="DYLD_LIBRARY_PATH=/usr/local/Oracle/product/instantclient/11.2.0.4.0/lib gqlplus"
+	#alias sqlplus="DYLD_LIBRARY_PATH=/usr/local/Oracle/product/instantclient/11.2.0.4.0/lib sqlplus"
+	#alias gqlplus="DYLD_LIBRARY_PATH=/usr/local/Oracle/product/instantclient/11.2.0.4.0/lib gqlplus"
 	alias htop='sudo htop'
+
+    ## ls ##
+    alias ls='gls -hF --color=auto'
+
 else
+    ## ls ##
+    alias ls='ls -hF --color=auto'
+    
 	#Pacman alias examples
 	alias pacupg='sudo pacman -Syu'		# Synchronize with repositories and then upgrade packages that are out of date on the local system.
 	alias pacin='sudo pacman -S'		# Install specific package(s) from the repositories
@@ -32,7 +39,6 @@ alias t='todo.sh -d ~/.todo.cfg'
 alias vi=vim
 
 alias diff='colordiff'          # requires colordiff package
-alias ls='ls -hF --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -56,6 +62,18 @@ alias pgg='ps -Af | grep'           # requires an argument
 alias ..='cd ..'
 # }}}
 
+## ls ## {{{
+    alias lr='ls -R'                    # recursive ls
+    alias ll='ls -l'
+    alias la='ll -A'
+    alias lx='ll -BX'                   # sort by extension
+    alias lz='ll -rS'                   # sort by size
+    alias lt='ll -rt'                   # sort by date
+    alias lm='la | more'
+    alias l='ls -CF'
+    alias l.='ls -Ad .*'
+    # }}}
+
 # Privileged access
 if [ $UID -ne 0 ]; then
     alias sudo='sudo '
@@ -67,18 +85,6 @@ if [ $UID -ne 0 ]; then
     alias update='sudo pacman -Su'
     alias netctl='sudo netctl'
 fi
-
-## ls ## {{{
-alias lr='ls -R'                    # recursive ls
-alias ll='ls -l'
-alias la='ll -A'
-alias lx='ll -BX'                   # sort by extension
-alias lz='ll -rS'                   # sort by size
-alias lt='ll -rt'                   # sort by date
-alias lm='la | more'
-alias l='ls -CF'
-alias l.='ls -Ad .*'
-# }}}
 
 ## Safety features ## {{{
 alias cp='cp -i'
