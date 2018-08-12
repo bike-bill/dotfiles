@@ -56,29 +56,16 @@ fi
 
 if is_osx; then
     export ANDROID_HOME=/usr/local/opt/android-sdk
-    #GNUBIN_HOME=/usr/local/opt/coreutils/libexec/gnubin
-    #export PATH="$GNUBIN_HOME:$PATH"
-    #GNUMAN_HOME=/usr/local/opt/coreutils/libexec/gnuman
-    #export MANPATH=$GNUMAN_HOME:$MANPATH
-    #export VIRTUALENV_PYTHON=/usr/local/bin/python3
-    #export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-    #source /usr/local/bin/virtualenvwrapper.sh
     source ~/.homebrew-github-api-token
 else
     export PATH=$HOME/.jenv/bin:$PATH
     export ANDROID_HOME=/opt/android-sdk
-    #export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
-    #export JAVA_FONTS=/usr/share/fonts/TTF
-    #export VIRTUALENV_PYTHON=/usr/bin/python3
-    #source /usr/bin/virtualenvwrapper.sh
-    if [ -f /usr/share/django-bash-completion/django-bash-completion.sh ]; then
-        . /usr/share/django-bash-completion/django-bash-completion.sh;
-    fi	
 fi
-#export WORKON_HOME=$HOME/.virtualenvs
+
 export EDITOR=vim
 export TERM=xterm-256color
 export PATH=.:$HOME/bin:$PATH
+
 if [ -f "$HOME/.dir_colors" ] ; then
     eval $(dircolors -b $HOME/.dir_colors)
 fi
