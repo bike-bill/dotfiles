@@ -56,34 +56,38 @@ fi
 
 if is_osx; then
     export ANDROID_HOME=/usr/local/opt/android-sdk
-    #GNUBIN_HOME=/usr/local/opt/coreutils/libexec/gnubin
-    #export PATH="$GNUBIN_HOME:$PATH"
-    #GNUMAN_HOME=/usr/local/opt/coreutils/libexec/gnuman
-    #export MANPATH=$GNUMAN_HOME:$MANPATH
-    #export VIRTUALENV_PYTHON=/usr/local/bin/python3
-    #export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-    #source /usr/local/bin/virtualenvwrapper.sh
+  
     source ~/.homebrew-github-api-token
+    if [ -f "$HOME/.dir_colors" ] ; then
+        eval $(gdircolors -b $HOME/.dir_colors)
+    fi
+    export NVM_DIR="$HOME/.nvm"
+    . "/usr/local/opt/nvm/nvm.sh"
 else
     export PATH=$HOME/.jenv/bin:$PATH
     export ANDROID_HOME=/opt/android-sdk
-    #export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
-    #export JAVA_FONTS=/usr/share/fonts/TTF
-    #export VIRTUALENV_PYTHON=/usr/bin/python3
-    #source /usr/bin/virtualenvwrapper.sh
-    if [ -f /usr/share/django-bash-completion/django-bash-completion.sh ]; then
-        . /usr/share/django-bash-completion/django-bash-completion.sh;
-    fi	
+    if [ -f "$HOME/.dir_colors" ] ; then
+        eval $(dircolors -b $HOME/.dir_colors)
+    fi
+    if [ -f /usr/share/nvm/init-nvm.sh ]; then source /usr/share/nvm/init-nvm.sh; fi
 fi
-#export WORKON_HOME=$HOME/.virtualenvs
+
+searchAndDestroy() {
+    if [ -z "$1" ]; then
+        echo "Usage: searchAndDestroy [numeric port identifier]" >&2
+        return 1
+    fi
+    lsof -i TCP:$1 | awk '/LISTEN/{print $2}' | xargs kill -9
+}
+
 export EDITOR=vim
 export TERM=xterm-256color
 export PATH=.:$HOME/bin:$PATH
-if [ -f "$HOME/.dir_colors" ] ; then
-    eval $(dircolors -b $HOME/.dir_colors)
-fi
 
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 if which jenv > /dev/null 2>&1; then eval "$(jenv init -)"; fi
-if [ -f /usr/share/nvm/init-nvm.sh ]; then source /usr/share/nvm/init-nvm.sh; fi
 
+ # added for npm-completion https://github.com/Jephuff/npm-bash-completion
+PATH_TO_NPM_COMPLETION="/Users/william/.nvm/versions/node/v10.7.0/lib/node_modules/npm-completion"
+source $PATH_TO_NPM_COMPLETION/npm-completion.sh
+PATH_TO_NPM_COMPLETION="/Users/william/.nvm/versions/node/v10.7.0/bin/../lib/node_modules/npm-completion"
