@@ -68,7 +68,7 @@ if is_osx; then
         fi
     fi
     if [ -f "$HOME/.dir_colors" ] ; then
-        eval $(dircolors -b $HOME/.dir_colors)
+        eval $(gdircolors -b $HOME/.dir_colors)
     fi
 else
     export PATH=$HOME/.jenv/bin:$PATH
