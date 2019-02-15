@@ -6,7 +6,6 @@ if is_osx; then
     ## ls ##
     alias ls='gls -hF --color=auto'
     alias rm='grm'
-
 else
     ## ls ##
     alias ls='ls -hF --color=auto'
