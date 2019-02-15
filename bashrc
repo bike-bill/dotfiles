@@ -59,16 +59,7 @@ export NVM_DIR="$HOME/.nvm"
 if is_osx; then
     export ANDROID_HOME=/usr/local/opt/android-sdk
     source ~/.homebrew-github-api-token
-    if type brew 2&>/dev/null; then
-        for COMPLETION in $(brew --prefix)/etc/bash_completion.d/*
-        do
-            [[ -f $COMPLETION ]] && source "$COMPLETION"
-        done
-        if [[ -f $(brew --prefix)/etc/profile.d/bash_completion.sh ]];
-        then
-            source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
-        fi
-    fi
+    [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
     if [ -f "$HOME/.dir_colors" ] ; then
         eval $(gdircolors -b $HOME/.dir_colors)
     fi
@@ -86,9 +77,6 @@ fi
 export EDITOR=vim
 export TERM=xterm-256color
 export PATH=.:$HOME/bin:$PATH
-if [ -f "$HOME/.dir_colors" ] ; then
-    eval $(dircolors -b $HOME/.dir_colors)
-fi
 
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 if which jenv > /dev/null 2>&1; then eval "$(jenv init -)"; fi
@@ -105,5 +93,5 @@ searchAndDestroy() {
 }
 
  # added for npm-completion https://github.com/Jephuff/npm-bash-completion
-PATH_TO_NPM_COMPLETION="/home/william/.nvm/versions/node/v11.9.0/bin/../lib/node_modules/npm-completion"
-source $PATH_TO_NPM_COMPLETION/npm-completion.sh
+# PATH_TO_NPM_COMPLETION="/home/william/.nvm/versions/node/v11.9.0/bin/../lib/node_modules/npm-completion"
+# source $PATH_TO_NPM_COMPLETION/npm-completion.sh
