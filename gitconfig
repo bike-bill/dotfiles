@@ -7,20 +7,20 @@
 [color]
 	ui = auto
 [commit]
-	template = ~/.git-commit-template.txt
+    template = ~/.git-commit-template.txt
 [credential]
-    helper = cache --timeout=7200
+	helper = cache --timeout=7200
 [diff]
 	tool = diffmerge
 [difftool "diffmerge"]
-    cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
 [merge]
 	tool = diffmerge
 [mergetool "diffmerge"]
 	trustExitCode = true
 	cmd = diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
