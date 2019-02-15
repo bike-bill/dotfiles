@@ -3,26 +3,24 @@
 	name = William Sandner
 [core]
 	excludesfile = ~/.gitignore_global
-[diff]
-	tool = meld
-[difftool]
-	prompt = false
-[difftool "meld"]
-	trustExitCode = true
-	cmd = meld "$LOCAL" "$REMOTE"
-	### OSX ###
-	#cmd = open -W -a Meld --args \"$LOCAL\" \"$PWD/$REMOTE\"
-[merge]
-	tool = meld
-	conflict-style = diff3
-[mergetool] 
-	### Edit the middle pane, either BASE, or MERGED
-	### BASE is the common ANCESTOR
-	trustExitCode = true
-	cmd = meld --automerge $LOCAL $BASE $REMOTE --output $MERGED
-	#cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
-        ### OSX ###
-	#cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
-	### See: http://stackoverflow.com/questions/34119866/setting-up-and-using-meld-as-your-git-difftool-and-mergetool
+	autocrlf = input
 [color]
 	ui = auto
+[commit]
+	template = ~/.git-commit-template.txt
+[credential]
+    helper = cache --timeout=7200
+[diff]
+	tool = diffmerge
+[difftool "diffmerge"]
+    cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+[merge]
+	tool = diffmerge
+[mergetool "diffmerge"]
+	trustExitCode = true
+	cmd = diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
