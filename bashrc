@@ -54,6 +54,8 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+export NVM_DIR="$HOME/.nvm"
+
 if is_osx; then
     export ANDROID_HOME=/usr/local/opt/android-sdk
     source ~/.homebrew-github-api-token
@@ -70,12 +72,15 @@ if is_osx; then
     if [ -f "$HOME/.dir_colors" ] ; then
         eval $(gdircolors -b $HOME/.dir_colors)
     fi
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+    [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 else
     export PATH=$HOME/.jenv/bin:$PATH
     export ANDROID_HOME=/opt/android-sdk
     if [ -f "$HOME/.dir_colors" ] ; then
         eval $(dircolors -b $HOME/.dir_colors)
     fi
+    if [ -f /usr/share/nvm/init-nvm.sh ]; then source /usr/share/nvm/init-nvm.sh; fi
 fi
 
 export EDITOR=vim
@@ -85,8 +90,6 @@ export PATH=.:$HOME/bin:$PATH
 
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 if which jenv > /dev/null 2>&1; then eval "$(jenv init -)"; fi
-if [ -f /usr/share/nvm/init-nvm.sh ]; then source /usr/share/nvm/init-nvm.sh; fi
-
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
