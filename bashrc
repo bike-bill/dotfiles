@@ -67,18 +67,21 @@ if is_osx; then
             source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
         fi
     fi
+    if [ -f "$HOME/.dir_colors" ] ; then
+        eval $(dircolors -b $HOME/.dir_colors)
+    fi
 else
     export PATH=$HOME/.jenv/bin:$PATH
     export ANDROID_HOME=/opt/android-sdk
+    if [ -f "$HOME/.dir_colors" ] ; then
+        eval $(dircolors -b $HOME/.dir_colors)
+    fi
 fi
 
 export EDITOR=vim
 export TERM=xterm-256color
 export PATH=.:$HOME/bin:$PATH
 
-if [ -f "$HOME/.dir_colors" ] ; then
-    eval $(dircolors -b $HOME/.dir_colors)
-fi
 
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 if which jenv > /dev/null 2>&1; then eval "$(jenv init -)"; fi
