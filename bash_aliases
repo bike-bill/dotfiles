@@ -100,11 +100,10 @@ if is_osx; then
 else
     alias rm='rm -I'                    # 'rm -i' prompts for every file
     # safer alternative w/ timeout, not stored in history
-    alias rm='timeout 3 grm -Iv --one-file-system'
+    alias rm='timeout 3 rm -Iv --one-file-system'
     alias chown='chown --preserve-root'
     alias chmod='chmod --preserve-root'
     alias chgrp='chgrp --preserve-root'
-
 fi
 
 alias ln='ln -i'

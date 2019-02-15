@@ -83,14 +83,6 @@ else
     if [ -f /usr/share/nvm/init-nvm.sh ]; then source /usr/share/nvm/init-nvm.sh; fi
 fi
 
-searchAndDestroy() {
-    if [ -z "$1" ]; then
-        echo "Usage: searchAndDestroy [numeric port identifier]" >&2
-        return 1
-    fi
-    lsof -i TCP:$1 | awk '/LISTEN/{print $2}' | xargs kill -9
-}
-
 export EDITOR=vim
 export TERM=xterm-256color
 export PATH=.:$HOME/bin:$PATH
@@ -103,3 +95,15 @@ if which jenv > /dev/null 2>&1; then eval "$(jenv init -)"; fi
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+
+searchAndDestroy() {
+    if [ -z "$1" ]; then
+        echo "Usage: searchAndDestroy [numeric port identifier]" >&2
+        return 1
+    fi
+    lsof -i TCP:$1 | awk '/LISTEN/{print $2}' | xargs kill -9
+}
+
+ # added for npm-completion https://github.com/Jephuff/npm-bash-completion
+PATH_TO_NPM_COMPLETION="/home/william/.nvm/versions/node/v11.9.0/bin/../lib/node_modules/npm-completion"
+source $PATH_TO_NPM_COMPLETION/npm-completion.sh
