@@ -54,15 +54,33 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+export NVM_DIR="$HOME/.nvm"
+
 if is_osx; then
     export ANDROID_HOME=/usr/local/opt/android-sdk
-  
+    #GNUBIN_HOME=/usr/local/opt/coreutils/libexec/gnubin
+    #export PATH="$GNUBIN_HOME:$PATH"
+    #GNUMAN_HOME=/usr/local/opt/coreutils/libexec/gnuman
+    #export MANPATH=$GNUMAN_HOME:$MANPATH
+    #export VIRTUALENV_PYTHON=/usr/local/bin/python3
+    #export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+    #source /usr/local/bin/virtualenvwrapper.sh
     source ~/.homebrew-github-api-token
+    if type brew 2&>/dev/null; then
+        for COMPLETION in $(brew --prefix)/etc/bash_completion.d/*
+        do
+            [[ -f $COMPLETION ]] && source "$COMPLETION"
+        done
+        if [[ -f $(brew --prefix)/etc/profile.d/bash_completion.sh ]];
+        then
+            source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+        fi
+    fi
     if [ -f "$HOME/.dir_colors" ] ; then
         eval $(gdircolors -b $HOME/.dir_colors)
     fi
-    export NVM_DIR="$HOME/.nvm"
-    . "/usr/local/opt/nvm/nvm.sh"
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+    [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 else
     export PATH=$HOME/.jenv/bin:$PATH
     export ANDROID_HOME=/opt/android-sdk
@@ -87,7 +105,5 @@ export PATH=.:$HOME/bin:$PATH
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 if which jenv > /dev/null 2>&1; then eval "$(jenv init -)"; fi
 
- # added for npm-completion https://github.com/Jephuff/npm-bash-completion
-PATH_TO_NPM_COMPLETION="/Users/william/.nvm/versions/node/v10.7.0/lib/node_modules/npm-completion"
-source $PATH_TO_NPM_COMPLETION/npm-completion.sh
-PATH_TO_NPM_COMPLETION="/Users/william/.nvm/versions/node/v10.7.0/bin/../lib/node_modules/npm-completion"
+# added by travis gem
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
