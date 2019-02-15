@@ -57,6 +57,16 @@ fi
 if is_osx; then
     export ANDROID_HOME=/usr/local/opt/android-sdk
     source ~/.homebrew-github-api-token
+    if type brew 2&>/dev/null; then
+        for COMPLETION in $(brew --prefix)/etc/bash_completion.d/*
+        do
+            [[ -f $COMPLETION ]] && source "$COMPLETION"
+        done
+        if [[ -f $(brew --prefix)/etc/profile.d/bash_completion.sh ]];
+        then
+            source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+        fi
+    fi
 else
     export PATH=$HOME/.jenv/bin:$PATH
     export ANDROID_HOME=/opt/android-sdk
@@ -74,3 +84,6 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 if which jenv > /dev/null 2>&1; then eval "$(jenv init -)"; fi
 if [ -f /usr/share/nvm/init-nvm.sh ]; then source /usr/share/nvm/init-nvm.sh; fi
 
+
+# added by travis gem
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
