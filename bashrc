@@ -92,6 +92,6 @@ searchAndDestroy() {
     lsof -i TCP:$1 | awk '/LISTEN/{print $2}' | xargs kill -9
 }
 
- # added for npm-completion https://github.com/Jephuff/npm-bash-completion
+# added for npm-completion https://github.com/Jephuff/npm-bash-completion
 # PATH_TO_NPM_COMPLETION="/home/william/.nvm/versions/node/v11.9.0/bin/../lib/node_modules/npm-completion"
 # source $PATH_TO_NPM_COMPLETION/npm-completion.sh
