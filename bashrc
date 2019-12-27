@@ -60,11 +60,18 @@ if is_osx; then
     export ANDROID_HOME=/usr/local/opt/android-sdk
     source ~/.homebrew-github-api-token
     [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
     if [ -f "$HOME/.dir_colors" ] ; then
-        eval $(gdircolors -b $HOME/.dir_colors)
+       eval $(gdircolors -b $HOME/.dir_colors)
     fi
+
     [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
     [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
+
+    ssh-add &>/dev/null || eval $(ssh-agent) &>/dev/null   # start ssh-agent if not present
+    [ $? -eq 0 ] && {                                     # ssh-agent has started
+      ssh-add ~/.ssh/id_rsa &>/dev/null                   # Load key 1
+    }
 else
     export PATH=$HOME/.jenv/bin:$PATH
     export ANDROID_HOME=/opt/android-sdk
@@ -92,6 +99,6 @@ searchAndDestroy() {
     lsof -i TCP:$1 | awk '/LISTEN/{print $2}' | xargs kill -9
 }
 
- # added for npm-completion https://github.com/Jephuff/npm-bash-completion
+# added for npm-completion https://github.com/Jephuff/npm-bash-completion
 # PATH_TO_NPM_COMPLETION="/home/william/.nvm/versions/node/v11.9.0/bin/../lib/node_modules/npm-completion"
 # source $PATH_TO_NPM_COMPLETION/npm-completion.sh
