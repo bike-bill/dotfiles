@@ -60,23 +60,23 @@ if is_osx; then
     export ANDROID_HOME=/usr/local/opt/android-sdk
     source ~/.homebrew-github-api-token
     [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-
-    if [ -f "~/.dircolors" ] ; then
-       eval $(gdircolors ~/.dircolors/dircolors.256dark)
+    
+    if [ -f "$HOME/.dircolors/dircolors.256dark" ]; then
+       eval $(gdircolors $HOME/.dircolors/dircolors.256dark)
     fi
 
     [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
     [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
-    ssh-add &>/dev/null || eval $(ssh-agent) &>/dev/null   # start ssh-agent if not present
-    [ $? -eq 0 ] && {                                     # ssh-agent has started
-      ssh-add ~/.ssh/id_rsa &>/dev/null                   # Load key 1
-    }
+    # ssh-add &>/dev/null || eval $(ssh-agent) &>/dev/null  # start ssh-agent if not present
+    # [ $? -eq 0 ] && {                                     # ssh-agent has started
+    #   ssh-add ~/.ssh/id_rsa &>/dev/null                   # Load key 1
+    # }
 else
     export PATH=$HOME/.jenv/bin:$PATH
     export ANDROID_HOME=/opt/android-sdk
-    if [ -f "$HOME/.dir_colors" ] ; then
-        eval $(dircolors -b $HOME/.dir_colors)
+    if [ -f "$HOME/.dircolors/dircolors.256dark" ] ; then
+        eval $(dircolors -b $HOME/.dircolors/dircolors.256dark)
     fi
     if [ -f /usr/share/nvm/init-nvm.sh ]; then source /usr/share/nvm/init-nvm.sh; fi
 fi
