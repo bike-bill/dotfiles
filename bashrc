@@ -61,8 +61,8 @@ if is_osx; then
     source ~/.homebrew-github-api-token
     [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
-    if [ -f "$HOME/.dir_colors" ] ; then
-       eval $(gdircolors -b $HOME/.dir_colors)
+    if [ -f "~/.dircolors" ] ; then
+       eval $(gdircolors ~/.dircolors/dircolors.256dark)
     fi
 
     [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
