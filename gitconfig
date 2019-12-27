@@ -28,3 +28,11 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+[color "diff"]
+	new = green bold
+[color "status"]
+	updated = green bold
+[color "branch"]
+	current = green bold
+	upstream = cyan
+

@@ -27,6 +27,8 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+eval $(thefuck --alias)
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -55,6 +57,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 export NVM_DIR="$HOME/.nvm"
+export GOPATH="$HOME/go"
 
 if is_osx; then
     export ANDROID_HOME=/usr/local/opt/android-sdk
@@ -92,6 +95,8 @@ searchAndDestroy() {
     lsof -i TCP:$1 | awk '/LISTEN/{print $2}' | xargs kill -9
 }
 
- # added for npm-completion https://github.com/Jephuff/npm-bash-completion
+# added for npm-completion https://github.com/Jephuff/npm-bash-completion
 # PATH_TO_NPM_COMPLETION="/home/william/.nvm/versions/node/v11.9.0/bin/../lib/node_modules/npm-completion"
 # source $PATH_TO_NPM_COMPLETION/npm-completion.sh
+
+export PATH="$GOPATH/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
