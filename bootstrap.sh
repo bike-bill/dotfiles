@@ -2,7 +2,7 @@
 
 dir=~/.dotfiles                    # dotfiles directory
 olddir=~/.dotfiles_old             # old dotfiles backup directory
-files="bash_aliases bash_profile bashrc dir_colors \
+files="bash_aliases bash_profile bashrc \
        gitconfig \
        git_svn_bash_prompt gitignore_global \
        mongorc.js vim vimrc"        
