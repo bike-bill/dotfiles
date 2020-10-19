@@ -29,15 +29,6 @@ shopt -s checkwinsize
 
 eval $(thefuck --alias)
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /usr/share/bash-completion/bash_completion ] && ! shopt -oq posix; then
-    . /usr/share/bash-completion/bash_completion
-elif [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
-
 . ~/.git_svn_bash_prompt
 
 if [[ -z $DISPLAY ]]; then
@@ -89,7 +80,6 @@ export TERM=xterm-256color
 export PATH=.:$HOME/bin:$PATH
 
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
-if which jenv > /dev/null 2>&1; then eval "$(jenv init -)"; fi
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
@@ -102,7 +92,5 @@ searchAndDestroy() {
     lsof -i TCP:$1 | awk '/LISTEN/{print $2}' | xargs kill -9
 }
 
-# added for npm-completion https://github.com/Jephuff/npm-bash-completion
-# PATH_TO_NPM_COMPLETION="/home/william/.nvm/versions/node/v11.9.0/bin/../lib/node_modules/npm-completion"
-# source $PATH_TO_NPM_COMPLETION/npm-completion.sh
 export PATH="$GOPATH/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
