@@ -36,3 +36,5 @@
 	current = green bold
 	upstream = cyan
 
+[pull]
+	rebase = false
