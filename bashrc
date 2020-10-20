@@ -69,8 +69,7 @@ if is_osx; then
     fi
 
     [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
-    [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
-
+    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
     # ssh-add &>/dev/null || eval $(ssh-agent) &>/dev/null  # start ssh-agent if not present
     # [ $? -eq 0 ] && {                                     # ssh-agent has started
     #   ssh-add ~/.ssh/id_rsa &>/dev/null                   # Load key 1
