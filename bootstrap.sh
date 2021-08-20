@@ -5,7 +5,7 @@ olddir=~/.dotfiles_old             # old dotfiles backup directory
 files="aliases bash_profile bashrc \
        gitconfig \
        git_svn_bash_prompt gitignore_global \
-       mongorc.js vim vimrc zsh-dircolors.config \
+       mongorc.js vimrc zsh-dircolors.config \
        zshrc zshrc.pre-oh-my-zsh"        
 
 ##########
