@@ -93,3 +93,7 @@ searchAndDestroy() {
 
 export PATH="$GOPATH/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+
+complete -C /usr/bin/vault vault
+
+complete -C /usr/bin/terraform terraform

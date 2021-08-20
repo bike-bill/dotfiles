@@ -75,7 +75,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws nvm docker docker-compose git gitfast zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
+plugins=(archlinux aws nvm docker docker-compose git gitfast zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -141,7 +141,7 @@ if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
-# added for hub
+# added for Githhub hub
 eval "$(hub alias -s)"
 
 searchAndDestroy() {
@@ -157,5 +157,18 @@ teatime() {
 	espeak 'Your tea is ready' 2>/dev/null & gxmessage 'Your tea is ready' 2>/dev/null;
 }
 
+# DOTNET - Required
+export PATH="$PATH:~/.dotnet/tools"
+# DOTNET - Optional
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export ASPNETCORE_ENVIRONMENT=Development
+
+export NODE_OPTIONS=--max_old_space_size=4096
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/vault vault
+
+complete -o nospace -C /usr/bin/terraform terraform

@@ -9,7 +9,7 @@
 [commit]
     template = ~/.git-commit-template.txt
 [credential]
-	helper = cache --timeout=7200
+	helper = store
 [diff]
 	tool = meld
 [difftool]
