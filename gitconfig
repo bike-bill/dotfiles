@@ -38,3 +38,6 @@
 
 [pull]
 	rebase = false
+[cola]
+	spellcheck = false
+	startupmode = list
