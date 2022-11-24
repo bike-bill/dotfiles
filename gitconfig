@@ -1,6 +1,7 @@
 [user]
 	email = wsandner@gmail.com
 	name = William Sandner
+	signingKey = FA0A592220B82519
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
@@ -43,3 +44,5 @@
 	startupmode = list
 [hub]
 	protocol = https
+[init]
+	defaultBranch = main

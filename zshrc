@@ -75,7 +75,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux aws nvm docker docker-compose git gitfast zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
+plugins=(archlinux aws docker docker-compose git gitfast nvm zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
+autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
@@ -138,6 +139,10 @@ fi
 
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
@@ -157,16 +162,9 @@ teatime() {
 	espeak 'Your tea is ready' 2>/dev/null & gxmessage 'Your tea is ready' 2>/dev/null;
 }
 
-# DOTNET - Required
-export PATH="$PATH:~/.dotnet/tools"
-# DOTNET - Optional
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export ASPNETCORE_ENVIRONMENT=Development
-
-export NODE_OPTIONS=--max_old_space_size=4096
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH="$PATH:$GOPATH/bin"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/vault vault

@@ -1,7 +1,8 @@
+execute pathogen#infect()
+set nocompatible
 syntax on
 set background=dark
-colorscheme solarized8
-set termguicolors
 filetype plugin indent on
 set ts=4 sw=4
-
+set number
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
