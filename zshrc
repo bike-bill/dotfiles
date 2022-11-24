@@ -162,33 +162,10 @@ teatime() {
 	espeak 'Your tea is ready' 2>/dev/null & gxmessage 'Your tea is ready' 2>/dev/null;
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-# DOTNET - Required
-export PATH="$PATH:~/.dotnet/tools"
-# DOTNET - Optional
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export ASPNETCORE_ENVIRONMENT=Development
-
-export NODE_OPTIONS=--max_old_space_size=4096
-
->>>>>>> 869e3ee8d487764485264b1a7ecf2207db3dc1f1
->>>>>>> 7372d60b815a4454faf7524754559c2cc858ce02
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH="$PATH:$GOPATH/bin"
 
-<<<<<<< HEAD
-# DOTNET - Required
-export PATH="$PATH:/home/william/.dotnet/tools"
-# DOTNET - Optional
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export ASPNETCORE_ENVIRONMENT=Development
-=======
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/vault vault
-
 complete -o nospace -C /usr/bin/terraform terraform
->>>>>>> 869e3ee8d487764485264b1a7ecf2207db3dc1f1
