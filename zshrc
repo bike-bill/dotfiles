@@ -174,9 +174,9 @@ teatime() {
 export PATH="$PATH:$GOPATH/bin"
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/vault vault
 
 RPROMPT='$(tf_prompt_info)'
 ZSH_THEME_TF_PROMPT_PREFIX="%{$fg[white]%}"
 ZSH_THEME_TF_PROMPT_SUFFIX="%{$reset_color%}"
 
+complete -o nospace -C /usr/bin/terraform terraform
