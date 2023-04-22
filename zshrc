@@ -75,12 +75,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux aws docker docker-compose git gitfast nvm zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
+plugins=(aliases archlinux aws docker docker-compose doctl git gitfast lpass nvm terraform zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
 autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+#
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -98,7 +99,13 @@ export EDITOR=vim
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-setopt hist_ignore_all_dups 
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_SAVE_NO_DUPS
 
 function is_osx() {
     [[ "$OSTYPE" =~ ^darwin ]] || return 1
@@ -168,4 +175,8 @@ export PATH="$PATH:$GOPATH/bin"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/vault vault
-complete -o nospace -C /usr/bin/terraform terraform
+
+RPROMPT='$(tf_prompt_info)'
+ZSH_THEME_TF_PROMPT_PREFIX="%{$fg[white]%}"
+ZSH_THEME_TF_PROMPT_SUFFIX="%{$reset_color%}"
+
