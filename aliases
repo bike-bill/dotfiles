@@ -1,102 +1,16 @@
 if is_osx; then
-    #alias sqlplus="DYLD_LIBRARY_PATH=/usr/local/Oracle/product/instantclient/11.2.0.4.0/lib sqlplus"
-    #alias gqlplus="DYLD_LIBRARY_PATH=/usr/local/Oracle/product/instantclient/11.2.0.4.0/lib gqlplus"
     alias htop='sudo htop'
 
     ## ls ##
-    alias ls='gls -hF --color=auto'
+    alias ls='gls'
     alias rm='grm'
-else
-    ## ls ##
-    alias ls='ls -hF --color=auto'
-fi
-
-alias t='todo.sh -d ~/.todo.cfg'
-alias vi=vim
-
-alias diff='colordiff'          # requires colordiff package
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-
-## Modified commands ## {{{
-alias more='less'
-alias df='df -h'
-alias du='du -c -h'
-alias mkdir='mkdir -p -v'
-alias nano='nano -w'
-alias ping='ping -c 5'
-alias dmesg='dmesg -HL'
-# }}}
-
-## New commands ## {{{
-alias da='date "+%A, %B %d, %Y [%T]"'
-alias du1='du --max-depth=1'
-alias hist='history | grep'         # requires an argument
-alias openports='ss --all --numeric --processes --ipv4 --ipv6'
-alias pgg='ps -Af | grep'           # requires an argument
-alias ..='cd ..'
-# }}}
-
-## ls ## {{{
-alias lr='ls -R'         # recursive ls
-alias ll='ls -l'
-alias la='ll -A'
-alias lx='ll -BX'        # sort by extension
-alias lz='ll -rS'        # sort by size
-alias lt='ll -rt'        # sort by date
-alias lm='la | more'
-alias l='ls -CF'
-alias l.='ls -Ad .*'
-    # }}}
-
-# Privileged access
-if [ $UID -ne 0 ]; then
-    alias sudo='sudo '
-    alias scat='sudo cat'
-    alias svim='sudoedit'
-    alias root='sudo -i'
-    alias reboot='sudo systemctl reboot'
-    alias poweroff='sudo systemctl poweroff'
-    alias update='sudo pacman -Su'
-    alias netctl='sudo netctl'
-fi
-
-## Safety features ## {{{
-alias cp='cp -i'
-alias mv='mv -i'
-
-if is_osx; then
-    alias rm='grm -I'                    # 'rm -i' prompts for every file
-    # safer alternative w/ timeout, not stored in history
-    alias rm='gtimeout 3 grm -Iv --one-file-system'
+    
     alias chown='gchown --preserve-root'
     alias chmod='gchmod --preserve-root'
     alias chgrp='gchgrp --preserve-root'
-else
-    alias rm='rm -I'                    # 'rm -i' prompts for every file
-    # safer alternative w/ timeout, not stored in history
-    alias rm='timeout 3 rm -Iv --one-file-system'
-    alias chown='chown --preserve-root'
-    alias chmod='chmod --preserve-root'
-    alias chgrp='chgrp --preserve-root'
 fi
 
-alias ln='ln -i'
-alias cls=' echo -ne "\033c"'       # clear screen for real (it does not work in Terminology)
-# }}}
-
-## Make Bash error tolerant ## {{{
-alias :q=' exit'
-alias :Q=' exit'
-alias :x=' exit'
-alias cd..='cd ..'
-# }}}
-
-# Add an "alert" alias for long running commands.  Use like so:
-#     sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
+alias l.='ldot'
+alias t='todo.sh -d ~/.todo.cfg'
 alias kubectl="minikube kubectl --"
-
 alias neofetch="neofetch --source ~/.config/neofetch/endeavouros_small"
