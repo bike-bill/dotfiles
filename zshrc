@@ -75,8 +75,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aliases archlinux aws common-aliases docker docker-compose doctl dotenv git gitfast nvm terraform zsh-autosuggestions zsh-syntax-highlighting)
-#autoload -U compinit && compinit
+plugins=(alias-finder aliases archlinux aws common-aliases docker docker-compose doctl dotenv git gitfast nvm terraform zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
+autoload -U compinit && compinit
 
 fpath=($ZSH/custom/plugins/zsh-completions/src $fpath)
 source $ZSH/oh-my-zsh.sh
@@ -107,6 +107,8 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt HIST_SAVE_NO_DUPS
+
+ZSH_ALIAS_FINDER_AUTOMATIC=true
 
 function is_osx() {
     [[ "$OSTYPE" =~ ^darwin ]] || return 1
