@@ -75,10 +75,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(alias-finder aliases archlinux aws common-aliases docker docker-compose doctl dotenv git gitfast nvm terraform zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
-autoload -U compinit && compinit
+plugins=(alias-finder aliases archlinux aws common-aliases docker docker-compose doctl dotenv git gitfast nvm terraform zsh-autosuggestions zsh-completions zsh-bash-completions-fallback
+ zsh-syntax-highlighting)
+#autoload -U compinit && compinit
 
-fpath=($ZSH/custom/plugins/zsh-completions/src $fpath)
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -142,9 +143,6 @@ if is_osx; then
     # }
 else
     export ANDROID_HOME=/opt/android-sdk
-    if [ -f "$HOME/.dircolors/dircolors.256dark" ] ; then
-        eval $(dircolors -b $HOME/.dircolors/dircolors.256dark)
-    fi
 fi
 
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
@@ -176,7 +174,7 @@ teatime() {
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH="$PATH:$GOPATH/bin"
 
-autoload -U +X bashcompinit && bashcompinit
+#autoload -U +X bashcompinit && bashcompinit
 
 RPROMPT='$(tf_prompt_info)'
 ZSH_THEME_TF_PROMPT_PREFIX="%{$fg[white]%}"
