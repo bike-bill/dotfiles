@@ -15,3 +15,5 @@ alias t='todo.sh -d ~/.todo.cfg'
 alias kubectl="minikube kubectl --"
 alias neofetch="neofetch --source ~/.config/neofetch/endeavouros_small"
 alias hist="history | grep -E -v '^ *[0-9]+ *h ' | grep "
+
+alias pn="pnpm"

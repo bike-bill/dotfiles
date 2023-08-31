@@ -87,6 +87,7 @@ plugins=(
 	dotenv 
 	git 
 	gitfast 
+	rbenv
 	terraform 
 	zsh-autosuggestions 
 	zsh-bash-completions-fallback
@@ -193,6 +194,12 @@ RPROMPT='$(tf_prompt_info)'
 ZSH_THEME_TF_PROMPT_PREFIX="%{$fg[white]%}"
 ZSH_THEME_TF_PROMPT_SUFFIX="%{$reset_color%}"
 
+eval "$(/home/william/.rbenv/bin/rbenv init - zsh)"
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+
 # pnpm
 export PNPM_HOME="/home/william/.local/share/pnpm"
 case ":$PATH:" in
@@ -200,6 +207,3 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
