@@ -76,24 +76,24 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	alias-finder 
-	aliases 
-	archlinux 
-	aws 
-	common-aliases 
-	docker 
-	docker-compose 
-	doctl 
-	dotenv 
-	git 
-	gitfast 
-	rbenv
-	terraform 
-	zsh-autosuggestions 
-	zsh-bash-completions-fallback
-	zsh-completions
-	zsh-nodenv
-    zsh-syntax-highlighting
+  alias-finder
+  aliases
+  archlinux
+  aws
+  common-aliases
+  docker
+  docker-compose
+  doctl
+  dotenv
+  git
+  gitfast
+  rbenv
+  terraform
+  zsh-autosuggestions
+  zsh-bash-completions-fallback
+  zsh-completions
+  zsh-nodenv
+  zsh-syntax-highlighting
 )
 #autoload -U compinit && compinit
 
@@ -193,6 +193,10 @@ ZSH_THEME_TF_PROMPT_PREFIX="%{$fg[white]%}"
 ZSH_THEME_TF_PROMPT_SUFFIX="%{$reset_color%}"
 
 #if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
+
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
 
 # tabtab source for packages
 # uninstall by removing these lines
