@@ -192,7 +192,7 @@ RPROMPT='$(tf_prompt_info)'
 ZSH_THEME_TF_PROMPT_PREFIX="%{$fg[white]%}"
 ZSH_THEME_TF_PROMPT_SUFFIX="%{$reset_color%}"
 
-if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
+#if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 
 # tabtab source for packages
 # uninstall by removing these lines
