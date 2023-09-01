@@ -166,8 +166,6 @@ else
     export ANDROID_HOME=/opt/android-sdk
 fi
 
-if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
-
 # added for Githhub hub
 eval "$(hub alias -s)"
 
@@ -194,7 +192,7 @@ RPROMPT='$(tf_prompt_info)'
 ZSH_THEME_TF_PROMPT_PREFIX="%{$fg[white]%}"
 ZSH_THEME_TF_PROMPT_SUFFIX="%{$reset_color%}"
 
-eval "$(/home/william/.rbenv/bin/rbenv init - zsh)"
+if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
 
 # tabtab source for packages
 # uninstall by removing these lines
