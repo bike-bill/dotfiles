@@ -75,9 +75,26 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(alias-finder aliases archlinux aws common-aliases docker docker-compose doctl dotenv git gitfast nvm terraform zsh-autosuggestions zsh-completions zsh-bash-completions-fallback
- zsh-syntax-highlighting)
-#autoload -U compinit && compinit
+plugins=(
+  alias-finder
+  aliases
+  archlinux
+  aws
+  common-aliases
+  docker
+  docker-compose
+  doctl
+  dotenv
+  git
+  gitfast
+  rbenv
+  terraform
+  zsh-autosuggestions
+  zsh-bash-completions-fallback
+  zsh-completions
+  zsh-nodenv
+  zsh-syntax-highlighting
+)
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source $ZSH/oh-my-zsh.sh
@@ -85,18 +102,13 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 #
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
 #   export EDITOR='mvim'
 # fi
-export EDITOR=vim
+# export EDITOR=vim
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -145,15 +157,6 @@ else
     export ANDROID_HOME=/opt/android-sdk
 fi
 
-if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# added by travis gem
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
-
 # added for Githhub hub
 eval "$(hub alias -s)"
 
@@ -174,10 +177,18 @@ teatime() {
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH="$PATH:$GOPATH/bin"
 
-#autoload -U +X bashcompinit && bashcompinit
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
 
-RPROMPT='$(tf_prompt_info)'
-ZSH_THEME_TF_PROMPT_PREFIX="%{$fg[white]%}"
-ZSH_THEME_TF_PROMPT_SUFFIX="%{$reset_color%}"
+# pnpm
+export PNPM_HOME="/home/william/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 
-complete -o nospace -C /usr/bin/terraform terraform
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
