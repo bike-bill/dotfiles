@@ -89,6 +89,7 @@ plugins=(
   gitfast
   minikube
   rbenv
+  ssh-agent
   terraform
   zsh-autosuggestions
   zsh-bash-completions-fallback
@@ -99,6 +100,10 @@ plugins=(
 #autoload -U compinit && compinit
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+zstyle :omz:plugins:ssh-agent agent-forwarding yes
+zstyle :omz:plugins:ssh-agent quiet yes
+zstyle :omz:plugins:ssh-agent lazy yes
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
