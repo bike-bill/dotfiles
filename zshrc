@@ -159,10 +159,10 @@ if is_osx; then
        eval $(gdircolors $HOME/.dircolors/dircolors.256dark)
     fi
 
-    # ssh-add &>/dev/null || eval $(ssh-agent) &>/dev/null  # start ssh-agent if not present
-    # [ $? -eq 0 ] && {                                     # ssh-agent has started
-    #   ssh-add ~/.ssh/id_rsa &>/dev/null                   # Load key 1
-    # }
+    ssh-add &>/dev/null || eval $(ssh-agent) &>/dev/null  # start ssh-agent if not present
+    [ $? -eq 0 ] && {                                     # ssh-agent has started
+      ssh-add ~/.ssh/id_rsa &>/dev/null                   # Load key 1
+    }
 else
     export ANDROID_HOME=/opt/android-sdk
 fi
