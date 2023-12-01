@@ -87,6 +87,7 @@ plugins=(
   dotenv
   git
   gitfast
+  kubectl
   minikube
   rbenv
   ssh-agent
@@ -215,4 +216,10 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+# kubectl and minikube
+#[[ ! -f "/usr/local/bin/kubectl" ]] && sudo ln -s $(which minikube) /usr/local/bin/kubectl
+#source <(minikube completion zsh)
+#source <(kubectl completion zsh)
+#alias k="kubectl"
+#compdef _kubectl k
+# end kubectl and minikube
