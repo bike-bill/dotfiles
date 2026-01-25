@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH=.:$HOME/bin:$HOME/go/bin:$PATH
+export PATH=$HOME/bin:$HOME/go/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -70,6 +70,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+#export PYENV_ROOT="$HOME/.pyenv"
+#[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -89,19 +93,19 @@ plugins=(
   gitfast
   kubectl
   minikube
+  nvm
+  pyenv
   rbenv
   ssh-agent
   terraform
   zsh-autosuggestions
   zsh-bash-completions-fallback
   zsh-completions
-  zsh-nodenv
   zsh-syntax-highlighting
 )
 #autoload -U compinit && compinit
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-zstyle :omz:plugins:ssh-agent agent-forwarding yes
 zstyle :omz:plugins:ssh-agent quiet yes
 zstyle :omz:plugins:ssh-agent lazy yes
 
@@ -208,18 +212,30 @@ export PATH="$HOME/gems/bin:$PATH"
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
-# pnpm
-export PNPM_HOME="/home/william/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-# kubectl and minikube
 #[[ ! -f "/usr/local/bin/kubectl" ]] && sudo ln -s $(which minikube) /usr/local/bin/kubectl
 #source <(minikube completion zsh)
 #source <(kubectl completion zsh)
 #alias k="kubectl"
 #compdef _kubectl k
 # end kubectl and minikube
+
+# Created by `pipx` on 2024-06-07 12:30:51
+export PATH="$PATH:/home/william/.local/bin"
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/william/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/william/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/william/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/william/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+. ~/.mvt-ios-complete.zsh && . ~/.mvt-android-complete.zsh
