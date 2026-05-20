@@ -9,8 +9,6 @@
 	ui = auto
 [commit]
     template = ~/.git-commit-template.txt
-[credential]
-	helper = store
 [diff]
 	tool = meld
 [difftool]
@@ -46,3 +44,7 @@
 	protocol = https
 [init]
 	defaultBranch = main
+[credential]
+	helper = /usr/lib/git-core/git-credential-libsecret
+[safe]
+	directory = /home/william/ws/otticode/otti-link
