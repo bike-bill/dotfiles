@@ -5,7 +5,7 @@ olddir=~/.dotfiles_old             # old dotfiles backup directory
 files="aliases bash_profile bashrc \
        gitconfig \
        git_svn_bash_prompt gitignore_global \
-       mongorc.js vimrc zsh-dircolors.config \
+       mongorc.js profile vimrc zsh-dircolors.config \
        zshrc zshrc.pre-oh-my-zsh"        
 
 ##########
@@ -22,5 +22,3 @@ for file in $files; do
     mv ~/.$file $olddir
     ln -s $dir/$file ~/.$file
 done
-
-source ~/.bash_profile
