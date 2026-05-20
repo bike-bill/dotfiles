@@ -11,9 +11,15 @@ if is_osx; then
 fi
 
 alias l.='ldot'
+alias yarmorph='yay -Rns $(yay -Qtdq)'
 alias t='todo.sh -d ~/.todo.cfg'
 alias kubectl="minikube kubectl --"
 alias neofetch="neofetch --source ~/.config/neofetch/endeavouros_small"
 alias hist="history | grep -E -v '^ *[0-9]+ *h ' | grep "
 
 alias pn="pnpm"
+alias gte="gnome-text-editor"
+
+# Fix for GNOME Snapshot segfault on hybrid graphics
+alias snapshot='GSK_RENDERER=cairo \snapshot'
+
