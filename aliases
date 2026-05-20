@@ -22,3 +22,6 @@ alias gte="gnome-text-editor"
 alias vim="nvim"
 alias yarebuild='checkrebuild | cut -d" " -f2 | xargs yay -S --rebuild --answerclean A --answerdiff N'
 
+# Fix for GNOME Snapshot segfault on hybrid graphics
+alias snapshot='GSK_RENDERER=cairo \snapshot'
+

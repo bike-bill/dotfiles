@@ -5,9 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/go/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -90,14 +87,8 @@ plugins=(
   doctl
   dotenv
   git
-  gitfast
-  kubectl
-  minikube
-  nvm
-  pyenv
-  rbenv
   ssh-agent
-  terraform
+  virtualenv
   zsh-autosuggestions
   zsh-bash-completions-fallback
   zsh-completions
@@ -130,6 +121,8 @@ export GIT_EDITOR=zsh
 # fi
 export EDITOR=vim
 
+export DIFFPROG=meld
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -147,19 +140,10 @@ function is_osx() {
     [[ "$OSTYPE" =~ ^darwin ]] || return 1
 }
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-if [ -f ~/.aliases ]; then
-    . ~/.aliases
-fi
+# --- Aliases & Functions ---
+[[ -f ~/.aliases ]] && source ~/.aliases
 
-eval $(thefuck --alias)
+#eval $(thefuck --alias)
 
 if is_osx; then
     export ANDROID_HOME=/usr/local/opt/android-sdk
@@ -193,6 +177,11 @@ teatime() {
 	espeak 'Your tea is ready' 2>/dev/null & gxmessage 'Your tea is ready' 2>/dev/null;
 }
 
+# --- Environment Variables ---
+export EDITOR=vim
+export DIFFPROG=meld
+export DOCKER_HOST=unix:///run/user/$UID/podman/podman.sock
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -202,15 +191,21 @@ RPROMPT='$(tf_prompt_info)'
 ZSH_THEME_TF_PROMPT_PREFIX="%{$fg[white]%}"
 ZSH_THEME_TF_PROMPT_SUFFIX="%{$reset_color%}"
 
-#if which rbenv > /dev/null 2>&1; then eval "$(rbenv init - zsh)"; fi
+# --- Modern Tooling & PATH Management ---
 
-# Install Ruby Gems to ~/gems
-export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin:$PATH"
+# 1. Start with Mise (Handles Ruby, Python, etc.)
+eval "$(mise activate zsh)"
 
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+# 2. Final PATH deduplication and cleanup
+# This ensures your bins are at the front but NEVER duplicated.
+typeset -U path
+path=(
+    "$HOME/bin"
+    "$HOME/go/bin"
+    "$HOME/.local/bin"
+    $path
+)
+export PATH
 
 #[[ ! -f "/usr/local/bin/kubectl" ]] && sudo ln -s $(which minikube) /usr/local/bin/kubectl
 #source <(minikube completion zsh)
@@ -219,23 +214,15 @@ export PATH="$HOME/gems/bin:$PATH"
 #compdef _kubectl k
 # end kubectl and minikube
 
-# Created by `pipx` on 2024-06-07 12:30:51
-export PATH="$PATH:/home/william/.local/bin"
+# Configuration for gst-plugin-spotify credentials cache
+export SPOTIFY_CACHE_CREDENTIALS="$HOME/.cache/spotify-credentials"
+export SPOTIFY_CACHE_FILES="$HOME/.cache/spotify-files"
 
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/william/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/william/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/william/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/william/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-. ~/.mvt-ios-complete.zsh && . ~/.mvt-android-complete.zsh
+# pnpm
+export PNPM_HOME="/home/william/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

@@ -9,6 +9,8 @@
 	ui = auto
 [commit]
     template = ~/.git-commit-template.txt
+[credential]
+	helper = store
 [diff]
 	tool = meld
 [difftool]
