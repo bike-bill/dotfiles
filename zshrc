@@ -1,81 +1,13 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Path to your oh-my-zsh installation.
+# --- Oh-My-Zsh Configuration ---
+# See ~/.oh-my-zsh/templates/zshrc.zsh-template for all available OMZ options
 export ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-#export PYENV_ROOT="$HOME/.pyenv"
-#[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
   alias-finder
   aliases
@@ -83,18 +15,15 @@ plugins=(
   aws
   common-aliases
   docker
-  docker-compose
   doctl
   dotenv
   git
   ssh-agent
-  virtualenv
+  terraform
   zsh-autosuggestions
-  zsh-bash-completions-fallback
   zsh-completions
   zsh-syntax-highlighting
 )
-#autoload -U compinit && compinit
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 zstyle :omz:plugins:ssh-agent quiet yes
@@ -102,102 +31,28 @@ zstyle :omz:plugins:ssh-agent lazy yes
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-#
-
-# Set git editor for git-extras completion
-export GIT_EDITOR=zsh
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-export EDITOR=vim
-
-export DIFFPROG=meld
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_FIND_NO_DUPS
-setopt HIST_REDUCE_BLANKS
-setopt HIST_SAVE_NO_DUPS
-
-ZSH_ALIAS_FINDER_AUTOMATIC=true
-
-function is_osx() {
-    [[ "$OSTYPE" =~ ^darwin ]] || return 1
-}
-
-# --- Aliases & Functions ---
-[[ -f ~/.aliases ]] && source ~/.aliases
-
-#eval $(thefuck --alias)
-
-if is_osx; then
-    export ANDROID_HOME=/usr/local/opt/android-sdk
-    source ~/.homebrew-github-api-token
-    
-    if [ -f "$HOME/.dircolors/dircolors.256dark" ]; then
-       eval $(gdircolors $HOME/.dircolors/dircolors.256dark)
-    fi
-
-    ssh-add &>/dev/null || eval $(ssh-agent) &>/dev/null  # start ssh-agent if not present
-    [ $? -eq 0 ] && {                                     # ssh-agent has started
-      ssh-add ~/.ssh/id_rsa &>/dev/null                   # Load key 1
-    }
-else
-    export ANDROID_HOME=/opt/android-sdk
-fi
-
-# added for Githhub hub
-eval "$(hub alias -s)"
-
-searchAndDestroy() {
-    if [ -z "$1" ]; then
-        echo "Usage: searchAndDestroy [numeric port identifier]" >&2
-        return 1
-    fi
-    lsof -i TCP:$1 | awk '/LISTEN/{print $2}' | xargs kill -9
-}
-
-teatime() {
-	sleep $1;
-	espeak 'Your tea is ready' 2>/dev/null & gxmessage 'Your tea is ready' 2>/dev/null;
-}
-
 # --- Environment Variables ---
 export EDITOR=vim
 export DIFFPROG=meld
 export DOCKER_HOST=unix:///run/user/$UID/podman/podman.sock
+export SPOTIFY_CACHE_CREDENTIALS="$HOME/.cache/spotify-credentials"
+export SPOTIFY_CACHE_FILES="$HOME/.cache/spotify-files"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# --- Shell Options ---
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_REDUCE_BLANKS
 
-#autoload -U +X bashcompinit && bashcompinit
+# --- Plugin Configuration ---
+ZSH_ALIAS_FINDER_AUTOMATIC=true
+autoload -U +X bashcompinit && bashcompinit
 
-RPROMPT='$(tf_prompt_info)'
-ZSH_THEME_TF_PROMPT_PREFIX="%{$fg[white]%}"
-ZSH_THEME_TF_PROMPT_SUFFIX="%{$reset_color%}"
-
-# --- Modern Tooling & PATH Management ---
-
-# 1. Start with Mise (Handles Ruby, Python, etc.)
+# --- Tool Activation ---
 eval "$(mise activate zsh)"
 
-# 2. Final PATH deduplication and cleanup
-# This ensures your bins are at the front but NEVER duplicated.
+# --- PATH Management ---
 typeset -U path
 path=(
     "$HOME/bin"
@@ -207,22 +62,35 @@ path=(
 )
 export PATH
 
-#[[ ! -f "/usr/local/bin/kubectl" ]] && sudo ln -s $(which minikube) /usr/local/bin/kubectl
-#source <(minikube completion zsh)
-#source <(kubectl completion zsh)
-#alias k="kubectl"
-#compdef _kubectl k
-# end kubectl and minikube
+# --- Functions ---
+function is_osx() {
+    [[ "$OSTYPE" =~ ^darwin ]] || return 1
+}
 
-# Configuration for gst-plugin-spotify credentials cache
-export SPOTIFY_CACHE_CREDENTIALS="$HOME/.cache/spotify-credentials"
-export SPOTIFY_CACHE_FILES="$HOME/.cache/spotify-files"
+searchAndDestroy() {
+    if [ -z "$1" ]; then
+        echo "Usage: searchAndDestroy [numeric port identifier]" >&2
+        return 1
+    fi
+    fuser -k -9 -n tcp "$1" 2>/dev/null
+}
 
+# --- Aliases ---
+[[ -f ~/.aliases ]] && source ~/.aliases
 
-# pnpm
-export PNPM_HOME="/home/william/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+# --- macOS Configuration ---
+if is_osx; then
+    export ANDROID_HOME=/usr/local/opt/android-sdk
+    source ~/.homebrew-github-api-token
+    
+    if [ -f "$HOME/.dircolors/dircolors.256dark" ]; then
+       eval $(gdircolors $HOME/.dircolors/dircolors.256dark)
+    fi
+fi
+
+# --- Prompt Configuration ---
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+RPROMPT='$(tf_prompt_info)'
+ZSH_THEME_TF_PROMPT_PREFIX="%{$fg[white]%}"
+ZSH_THEME_TF_PROMPT_SUFFIX="%{$reset_color%}"
