@@ -94,3 +94,11 @@ fi
 RPROMPT='$(tf_prompt_info)'
 ZSH_THEME_TF_PROMPT_PREFIX="%{$fg[white]%}"
 ZSH_THEME_TF_PROMPT_SUFFIX="%{$reset_color%}"
+
+# pnpm
+export PNPM_HOME="/home/william/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
