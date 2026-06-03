@@ -2,6 +2,10 @@
 ### Global ###
 ##############
 
+# AI / MCP secrets (canonical: ~/.config/ai/env)
+.config/ai/env
+.secrets.env
+
 
 # Archives #
 ############
