@@ -1,3 +1,5 @@
+# export PATH="/home/william/.local/share/mise/installs/node/24.15.0/bin:$PATH"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -9,13 +11,12 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
-  alias-finder
+  #alias-finder
   aliases
   archlinux
   aws
   common-aliases
   docker
-  doctl
   dotenv
   git
   ssh-agent
@@ -55,8 +56,7 @@ eval "$(mise activate zsh)"
 # --- PATH Management ---
 typeset -U path
 path=(
-    "$HOME/bin"
-    "$HOME/go/bin"
+    "$HOME/.cargo/bin"
     "$HOME/.local/bin"
     $path
 )
@@ -102,3 +102,18 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# OpenClaw Completion
+[ -f "/home/william/.openclaw/completions/openclaw.zsh" ] && source "/home/william/.openclaw/completions/openclaw.zsh"
+
+# --- Tool Activation ---
+# Must be last so mise paths take precedence over all other PATH entries
+eval "$(mise activate zsh)"
+
+# --- VS Code Shell Integration (manual install) ---
+# Manual install gives "Rich" shell integration with oh-my-zsh + powerlevel10k.
+# Must be sourced AFTER ohmyzsh/p10k so its hooks wrap the final prompt.
+if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+  . "/usr/share/code/resources/app/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-rc.zsh"
+fi
+
