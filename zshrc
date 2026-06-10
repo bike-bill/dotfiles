@@ -1,5 +1,3 @@
-# export PATH="/home/william/.local/share/mise/installs/node/24.15.0/bin:$PATH"
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -102,9 +100,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
-# OpenClaw Completion
-[ -f "/home/william/.openclaw/completions/openclaw.zsh" ] && source "/home/william/.openclaw/completions/openclaw.zsh"
 
 # --- Tool Activation ---
 # Must be last so mise paths take precedence over all other PATH entries
