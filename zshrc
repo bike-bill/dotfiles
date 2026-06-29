@@ -73,6 +73,14 @@ searchAndDestroy() {
     fuser -k -9 -n tcp "$1" 2>/dev/null
 }
 
+# Bitwarden
+eval "$(bw completion --shell zsh); compdef _bw bw;"
+
+bwu() {
+  export BW_SESSION=$(bw unlock --raw)
+  echo "✅ Bitwarden unlocked for this session"
+}
+
 # --- Aliases ---
 [[ -f ~/.aliases ]] && source ~/.aliases
 
@@ -111,4 +119,7 @@ eval "$(mise activate zsh)"
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
   . "/usr/share/code/resources/app/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-rc.zsh"
 fi
+
+# AUR Security Scanner - wrapper functions for paru/yay
+source /usr/share/aur-scan/integration.zsh
 
