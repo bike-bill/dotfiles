@@ -63,6 +63,8 @@ path=(
 )
 export PATH
 
+fpath=(~/.zsh/completions $fpath)
+
 # --- Functions ---
 function is_osx() {
     [[ "$OSTYPE" =~ ^darwin ]] || return 1
@@ -74,6 +76,13 @@ searchAndDestroy() {
         return 1
     fi
     fuser -k -9 -n tcp "$1" 2>/dev/null
+}
+
+#  Bitwarden
+eval "$(bw completion --shell zsh); compdef _bw bw;"
+bwu() {
+    export BW_SESSION=$(bw unlock --raw)
+    echo "✅ Bitwarden unlocked for this session"
 }
 
 # --- Aliases ---
