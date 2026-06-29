@@ -3,6 +3,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Re-source machine secrets so 'source ~/.zshrc' picks up changes
+[ -f "$HOME/.zshenv" ] && . "$HOME/.zshenv"
+
 # --- Oh-My-Zsh Configuration ---
 # See ~/.oh-my-zsh/templates/zshrc.zsh-template for all available OMZ options
 export ZSH=$HOME/.oh-my-zsh
@@ -59,6 +62,8 @@ path=(
     $path
 )
 export PATH
+
+fpath=(~/.zsh/completions $fpath)
 
 # --- Functions ---
 function is_osx() {
