@@ -39,6 +39,7 @@ export DIFFPROG=meld
 export DOCKER_HOST=unix:///run/user/$UID/podman/podman.sock
 export SPOTIFY_CACHE_CREDENTIALS="$HOME/.cache/spotify-credentials"
 export SPOTIFY_CACHE_FILES="$HOME/.cache/spotify-files"
+export OPENCODE_EXPERIMENTAL_BACKGROUND_SUBAGENTS=true
 
 # --- Shell Options ---
 setopt HIST_EXPIRE_DUPS_FIRST
